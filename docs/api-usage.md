@@ -49,9 +49,25 @@ Each endpoint returns a JSON response describing the resource. Relationships can
 
 ### Example: Listing Users
 
+#### cURL
+
 ```bash
 curl -H "Authorization: Bearer <token>" \
      'https://your-paymenter.example/api/v1/admin/users?per_page=20&include=role'
+```
+
+#### Next.js (TypeScript)
+
+```ts
+const res = await fetch(
+  'https://your-paymenter.example/api/v1/admin/users?per_page=20&include=role',
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.PAYMENTER_TOKEN}`,
+    },
+  }
+);
+const users = await res.json();
 ```
 
 ### Example: Creating an Invoice
@@ -66,6 +82,116 @@ curl -X POST 'https://your-paymenter.example/api/v1/admin/invoices' \
          "due_at": "2024-12-01",
          "status": "pending"
      }'
+```
+
+#### Next.js (TypeScript)
+
+```ts
+await fetch('https://your-paymenter.example/api/v1/admin/invoices', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${process.env.PAYMENTER_TOKEN}`,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    user_id: 1,
+    currency_code: 'USD',
+    due_at: '2024-12-01',
+    status: 'pending',
+  }),
+});
+```
+
+### Example: Listing Orders
+
+#### cURL
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+     'https://your-paymenter.example/api/v1/admin/orders?per_page=20'
+```
+
+#### Next.js (TypeScript)
+
+```ts
+const ordersRes = await fetch(
+  'https://your-paymenter.example/api/v1/admin/orders?per_page=20',
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.PAYMENTER_TOKEN}`,
+    },
+  }
+);
+const orders = await ordersRes.json();
+```
+
+### Example: Listing Services
+
+#### cURL
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+     'https://your-paymenter.example/api/v1/admin/services?per_page=20'
+```
+
+#### Next.js (TypeScript)
+
+```ts
+const servicesRes = await fetch(
+  'https://your-paymenter.example/api/v1/admin/services?per_page=20',
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.PAYMENTER_TOKEN}`,
+    },
+  }
+);
+const services = await servicesRes.json();
+```
+
+### Example: Listing Tickets
+
+#### cURL
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+     'https://your-paymenter.example/api/v1/admin/tickets?per_page=20'
+```
+
+#### Next.js (TypeScript)
+
+```ts
+const ticketsRes = await fetch(
+  'https://your-paymenter.example/api/v1/admin/tickets?per_page=20',
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.PAYMENTER_TOKEN}`,
+    },
+  }
+);
+const tickets = await ticketsRes.json();
+```
+
+### Example: Listing Ticket Messages
+
+#### cURL
+
+```bash
+curl -H "Authorization: Bearer <token>" \
+     'https://your-paymenter.example/api/v1/admin/ticket-messages?per_page=20'
+```
+
+#### Next.js (TypeScript)
+
+```ts
+const messagesRes = await fetch(
+  'https://your-paymenter.example/api/v1/admin/ticket-messages?per_page=20',
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.PAYMENTER_TOKEN}`,
+    },
+  }
+);
+const messages = await messagesRes.json();
 ```
 
 ### Response Format
